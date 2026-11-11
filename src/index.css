@@ -1,0 +1,498 @@
+@import "tailwindcss";
+
+/* Fonte do portal tipográfico (auto-hospedada para medir os glifos sem atraso). */
+@font-face {
+  font-family: "Fraunces Portal";
+  src: url("./assets/fonts/fraunces-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+/* ───────────────────────── Identidade ─────────────────────────
+   Paleta extraída da logomarca (vinho #53021C + marfim #F7ECE7)
+   e complementada com creme, rosa suave e champanhe.            */
+@theme {
+  --color-vinho-950: #19050e;
+  --color-vinho-900: #2a0715;
+  --color-vinho-800: #3c0619;
+  --color-vinho-700: #53021c;
+  --color-vinho-600: #6c0d2c;
+  --color-vinho-500: #8a1d40;
+  --color-vinho-400: #a8445f;
+  --color-framboesa: #b81d4a;
+
+  --color-rosa-300: #e6b3bb;
+  --color-rosa-200: #f0cfd2;
+  --color-rosa-100: #f8e7e5;
+
+  --color-marfim: #f7ece7;
+  --color-creme-50: #fcf9f5;
+  --color-creme-100: #f7f0e8;
+  --color-creme-200: #efe4d7;
+  --color-creme-300: #e2d1bf;
+
+  --color-champanhe-100: #f6ecd8;
+  --color-champanhe-200: #eedcb8;
+  --color-champanhe-300: #e2c896;
+  --color-dourado-400: #c9a266;
+  --color-dourado-500: #ad864c;
+  --color-dourado-600: #8a6a37;
+
+  --color-cacau-900: #2a1714;
+  --color-tinta: #3a1220;
+  --color-tinta-suave: #6e4a52;
+
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-portal: "Fraunces Portal", "Fraunces", Georgia, serif;
+
+  --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shadow-bolo: 0 40px 80px -40px rgb(58 6 25 / 0.45), 0 18px 36px -18px rgb(58 6 25 / 0.28);
+  --shadow-suave: 0 1px 2px rgb(58 6 25 / 0.06), 0 10px 30px -12px rgb(58 6 25 / 0.18);
+  --shadow-ouro: 0 0 0 1px rgb(226 200 150 / 0.35), 0 30px 80px -30px rgb(201 162 102 / 0.45);
+
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.75rem;
+}
+
+/* ───────────────────────── Base ───────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+  body {
+    background: var(--color-creme-100);
+    color: var(--color-tinta);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-vinho-700);
+    color: var(--color-marfim);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-dourado-500);
+    outline-offset: 3px;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  img {
+    max-width: 100%;
+  }
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ───────────────────────── Componentes ───────────────────────── */
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+
+  .script {
+    font-family: var(--font-script);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    background: var(--color-vinho-700);
+    color: var(--color-marfim);
+    font-weight: 600;
+    transition: top 0.3s var(--ease-cine);
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  /* Botões */
+  .btn {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    min-height: 3rem;
+    padding: 0 1.6rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition:
+      transform 0.5s var(--ease-cine),
+      box-shadow 0.5s var(--ease-cine),
+      background-color 0.4s var(--ease-soft),
+      color 0.4s var(--ease-soft);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 0.28) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.9s var(--ease-cine);
+  }
+  .btn:hover::after {
+    transform: translateX(120%);
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn:active {
+    transform: translateY(0) scale(0.98);
+  }
+  .btn svg {
+    transition: transform 0.5s var(--ease-cine);
+  }
+  .btn:hover svg.arrow {
+    transform: translateX(4px);
+  }
+  .btn-vinho {
+    background: var(--color-vinho-700);
+    color: var(--color-marfim);
+    box-shadow: 0 14px 30px -14px rgb(83 2 28 / 0.65);
+  }
+  .btn-vinho:hover {
+    background: var(--color-vinho-600);
+    box-shadow: 0 20px 40px -16px rgb(83 2 28 / 0.7);
+  }
+  .btn-ouro {
+    background: linear-gradient(135deg, var(--color-champanhe-200), var(--color-dourado-400));
+    color: var(--color-vinho-900);
+    box-shadow: 0 14px 30px -14px rgb(173 134 76 / 0.7);
+  }
+  .btn-contorno {
+    border: 1px solid currentColor;
+    background: transparent;
+  }
+  .btn-contorno:hover {
+    background: rgb(83 2 28 / 0.06);
+  }
+  .btn-claro {
+    background: var(--color-marfim);
+    color: var(--color-vinho-800);
+  }
+  .btn[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Link sublinhado animado */
+  .link-anim {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s var(--ease-cine);
+  }
+  .link-anim:hover,
+  .link-anim:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* Grão de papel (textura premium, estática) */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .32  0 0 0 0 .2  0 0 0 0 .2  0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* Texto dourado com brilho que percorre as letras */
+  .text-ouro {
+    background: linear-gradient(
+      100deg,
+      var(--color-dourado-500) 0%,
+      var(--color-champanhe-200) 22%,
+      var(--color-dourado-400) 40%,
+      #fff3dc 50%,
+      var(--color-dourado-400) 60%,
+      var(--color-champanhe-300) 80%,
+      var(--color-dourado-500) 100%
+    );
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 7s var(--ease-soft) infinite;
+  }
+
+  /* Campos do formulário */
+  .field-input {
+    width: 100%;
+    min-height: 3.25rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-creme-300);
+    background: var(--color-creme-50);
+    padding: 0.85rem 1rem;
+    color: var(--color-tinta);
+    font-size: 1rem;
+    transition:
+      border-color 0.3s var(--ease-soft),
+      box-shadow 0.4s var(--ease-cine),
+      background-color 0.3s var(--ease-soft);
+  }
+  .field-input::placeholder {
+    color: color-mix(in oklab, var(--color-tinta-suave) 70%, transparent);
+  }
+  .field-input:hover {
+    border-color: var(--color-rosa-300);
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-vinho-500);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgb(138 29 64 / 0.12);
+  }
+  .field-input[aria-invalid="true"] {
+    border-color: var(--color-framboesa);
+    box-shadow: 0 0 0 4px rgb(184 29 74 / 0.1);
+  }
+  select.field-input {
+    appearance: none;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2353021c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+  }
+  textarea.field-input {
+    min-height: 7rem;
+    resize: vertical;
+    line-height: 1.55;
+  }
+}
+
+/* ───────────────────────── Animações ───────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: 120% 0;
+  }
+  55%,
+  100% {
+    background-position: -120% 0;
+  }
+}
+
+/* Enquadramento fixo da foto do Hero (sem animação). */
+.hero-photo {
+  object-position: 50% 4%;
+}
+@media (min-width: 768px) and (min-aspect-ratio: 2/1) {
+  .hero-photo {
+    object-position: 50% 18%;
+  }
+}
+@media (max-width: 767px) {
+  .hero-photo {
+    object-position: 50% 62%;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.06);
+  }
+}
+.anim-breathe {
+  animation: breathe 7s ease-in-out infinite;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.anim-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 2.4s var(--ease-cine) forwards;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+.anim-float {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.anim-scroll-cue {
+  animation: scroll-cue 2.4s var(--ease-cine) infinite;
+}
+
+@keyframes ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+.anim-ring {
+  animation: ring 2.8s var(--ease-soft) infinite;
+}
+
+@keyframes glint {
+  0%,
+  70% {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(230%) skewX(-18deg);
+  }
+}
+.anim-glint {
+  animation: glint 6.5s var(--ease-soft) infinite;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-4px);
+  }
+  40%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+.anim-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes drip-flow {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* ───────────────────────── Portal da premiação ───────────────────────── */
+.award-portal [data-gp-caption] {
+  inset: calc(var(--gp-word-bottom, 60%) + 64px) 24px auto;
+  justify-content: center;
+}
+.award-portal [data-gp-hint] {
+  display: none;
+}
+.award-portal [data-gp-enter] {
+  min-height: 44px;
+  padding: 0 1.25rem;
+  gap: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgb(83 2 28 / 0.25);
+  color: var(--color-vinho-700);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.4s var(--ease-soft),
+    color 0.4s var(--ease-soft);
+}
+.award-portal [data-gp-enter]:hover {
+  background: var(--color-vinho-700);
+  color: var(--color-marfim);
+}
+.award-portal [data-gp-content] {
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-glint,
+  .anim-ring {
+    display: none;
+  }
+}
