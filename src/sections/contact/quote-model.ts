@@ -152,9 +152,9 @@ export function validateStep(step: StepKey, d: QuoteData): Errors {
     }
     case "sabores": {
       if (!d.massa) e.massa = "Escolha a massa ou marque “Ainda não decidi”.";
-      if (d.recheios.length === 0) e.recheios = "Escolha até 2 recheios ou marque “Ainda não decidi”.";
+      if (d.recheios.length === 0) e.recheios = "Escolha até 2 recheios por andar ou marque “Ainda não decidi”.";
       else if (d.recheios.filter((r) => r !== NAO_DECIDI).length > recheios.maxPerCake)
-        e.recheios = `Você pode escolher até ${recheios.maxPerCake} recheios por bolo.`;
+        e.recheios = `São até ${recheios.maxPerCake} recheios por andar.`;
       if (!d.cobertura) e.cobertura = "Escolha a cobertura ou marque “Ainda não decidi”.";
       break;
     }

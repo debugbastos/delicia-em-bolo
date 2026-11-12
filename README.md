@@ -92,7 +92,7 @@ substitua o arquivo e atualize `width`/`height` em `src/data/images.ts`.
 ## 4. Formulário de orçamento → WhatsApp
 
 - 7 etapas (cliente, evento, bolo, sabores, referências, entrega, revisão) com validação acessível e foco no primeiro erro.
-- Sabores e coberturas vêm do cardápio; limite de **2 recheios** (regra do cardápio) e opção "Ainda não decidi".
+- Sabores e coberturas vêm do cardápio; limite de **2 recheios por andar** (regra do cardápio) e opção "Ainda não decidi".
 - Rascunho salvo no aparelho do cliente (`localStorage`); as imagens não são salvas.
 - Ao enviar, o site monta a mensagem organizada por categorias e abre `wa.me/5575991990879` com o texto pronto.
   **Nada é "enviado" pelo site**: o cliente confirma o envio dentro do WhatsApp.

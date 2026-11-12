@@ -348,7 +348,7 @@ export function StepSabores({ form }: StepProps) {
 
       <Field
         id="f-recheios"
-        label={`Recheio (até ${recheios.maxPerCake})`}
+        label={`Recheios (até ${recheios.maxPerCake} por andar)`}
         required
         error={errors.recheios}
         group
