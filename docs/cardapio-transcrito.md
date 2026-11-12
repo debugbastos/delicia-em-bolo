@@ -25,7 +25,7 @@ Identidade no material: **Ateliê Delícia em Bolo — Realizando sonhos** · In
 
 - **Comuns:** Ninho · Chocolate 50% · Cocada cremosa · Brigadeiro branco · Limão · Castanha · Paçoca · Crocante salgado · Crocante pé de moleque (amendoim) · Geleia de maracujá e brigadeiro branco · Doce de leite
 - **Especiais:** Abacaxi e brigadeiro branco · Geleia de morango com brigadeiro branco · Nozes · Nutella · Ameixa
-- *Você pode escolher até 2 recheios por bolo.* → no site: "Até 2 recheios por andar: num bolo de 3 andares, cada andar leva 2 recheios."
+- *Você pode escolher até 2 recheios por bolo.* → no site: "Até 2 recheios por cada andar escolhido."
 
 ## Tamanhos (um andar)
 

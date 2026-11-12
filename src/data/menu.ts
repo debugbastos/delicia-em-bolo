@@ -62,7 +62,7 @@ export const recheios = {
     title: "Especiais",
     items: ["Abacaxi e brigadeiro branco", "Geleia de morango com brigadeiro branco", "Nozes", "Nutella", "Ameixa"],
   },
-  note: "Até 2 recheios por andar: num bolo de 3 andares, cada andar leva 2 recheios.",
+  note: "Até 2 recheios por cada andar escolhido.",
   maxPerCake: 2,
 };
 
@@ -124,7 +124,7 @@ export const informacoes: string[] = [
   "Cobramos a entrega.",
   "Para finalizar o agendamento é necessário o adiantamento de 50%.",
   "Detalhes acrescentados no bolo são cobrados à parte, como flores, topper, modelagem, pinturas, glitter ou estruturas.",
-  "Até 2 recheios por andar: num bolo de 3 andares, cada andar leva 2 recheios.",
+  "Até 2 recheios por cada andar escolhido.",
   "O número de fatias pode variar de acordo com a espessura que for cortada.",
   "Não nos responsabilizamos por acidentes depois da entrega do bolo.",
   "Em caso de desistência da encomenda 15 dias antes da entrega, não haverá devolução do valor de 50% pago.",
